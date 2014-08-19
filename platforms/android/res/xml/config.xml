@@ -12,12 +12,13 @@
     <feature name="Device">
         <param name="android-package" value="org.apache.cordova.device.Device" />
     </feature>
+    <feature name="BluetoothLePlugin">
+        <param name="android-package" value="com.randdusing.bluetoothle.BluetoothLePlugin" />
+    </feature>
     <name>nudge</name>
-    <description>
-        An Ionic Framework and Cordova project.
-    </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <description>Nudge by Buddi.</description>
+    <author email="richard.osterloh@gmail.com" href="http://www.buddi.co.uk/">
+      Buddi Ltd.
     </author>
     <content src="index.html" />
     <access origin="*" />
@@ -26,6 +27,7 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <feature name="StatusBar">
+        <param name="android-package" onload="true" value="org.apache.cordova.statusbar.StatusBar" />
         <param name="ios-package" onload="true" value="CDVStatusBar" />
     </feature>
 </widget>

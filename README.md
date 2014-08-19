@@ -14,3 +14,6 @@ Nudge by Buddi App
 ## Building and running (Android)
   * `$ ionic build android`
   * `$ ionic emulate android`
+
+## Debugging
+  `$ adb logcat -s CordovaLog`

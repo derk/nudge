@@ -9,5 +9,14 @@ c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\ionicfr
 c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\ionicframework\nudge156028\R$string.class \
 c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\ionicframework\nudge156028\R$xml.class \
 c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\ionicframework\nudge156028\R.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\randdusing\bluetoothle\BluetoothLePlugin$1.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\randdusing\bluetoothle\BluetoothLePlugin$2.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\randdusing\bluetoothle\BluetoothLePlugin$3.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\randdusing\bluetoothle\BluetoothLePlugin$4.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\com\randdusing\bluetoothle\BluetoothLePlugin.class \
 c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\org\apache\cordova\device\Device.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\org\apache\cordova\statusbar\StatusBar$1.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\org\apache\cordova\statusbar\StatusBar$2.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\org\apache\cordova\statusbar\StatusBar$3.class \
+c:\Users\Richard\workspace\nudge\platforms\android\ant-build\classes\org\apache\cordova\statusbar\StatusBar.class \
 c:\Users\Richard\workspace\nudge\platforms\android\ant-build\dexedLibs\classes-e590827f18b65dcacee7ef1fdf757b77.jar \
