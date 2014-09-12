@@ -1,5 +1,11 @@
 'use strict';
 angular.module('nudge.controllers', [])
+.controller('SplashCtrl', function($timeout, $state) {
+  var t = $timeout(function() {
+    $state.go('tab.colour');
+  }, 2000);
+  //$timeout.cancel(t);
+})
 
 .controller('ColourCtrl', function($scope, Colours, $ionicPopup) {
   $scope.debug = true;
@@ -167,7 +173,7 @@ angular.module('nudge.controllers', [])
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('SettingsCtrl', function($scope, Settings) {
+.controller('SettingsCtrl', function($scope, Settings, $cordovaDevice, $cordovaNetwork) {
   $scope.settings = Settings.getSettings();
 
   // Watch deeply for settings changes, and save them
@@ -175,4 +181,29 @@ angular.module('nudge.controllers', [])
   $scope.$watch('settings', function(v) {
     Settings.save();
   }, true);
+
+  try {
+    $scope.available = $cordovaDevice.getDevice().available;
+    $scope.device = $cordovaDevice.getDevice();
+    $scope.cordova = $cordovaDevice.getCordova();
+    $scope.model = $cordovaDevice.getModel();
+    $scope.platform = $cordovaDevice.getPlatform();
+    $scope.uuid = $cordovaDevice.getUUID();
+    $scope.version = $cordovaDevice.getVersion();
+  } catch (err) {
+    console.log("Error " + err.message);
+    alert("error " + err.$$failure.message);
+  }
+
+  $scope.networkType = $cordovaNetwork.getNetwork();
+
+  if ($cordovaNetwork.isOnline() == true) {
+    $scope.connectionType = 'Online';
+  }
+  else if ($cordovaNetwork.isOffline() == true) {
+    $scope.connectionType = 'Offline';
+  }
+  else {
+    $scope.errorMsg = 'Error getting isOffline / isOnline methods';
+  }
 });

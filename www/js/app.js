@@ -1,9 +1,11 @@
+'use strict';
 // Nudge by Buddi
 
-angular.module('nudge', ['ionic', 'nudge.controllers', 'nudge.services'])
+angular.module('nudge', ['ionic', 'ngCordova', 'nudge.controllers', 'nudge.services'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $cordovaSplashScreen) {
   $ionicPlatform.ready(function() {
+    $rootScope.isIOS = $ionicPlatform.is('iOS');
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if(window.cordova && window.cordova.plugins.Keyboard) {
@@ -13,15 +15,15 @@ angular.module('nudge', ['ionic', 'nudge.controllers', 'nudge.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+    setTimeout(function() {
+      $cordovaSplashScreen.hide();
+    }, 2000);
+
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
     // setup an abstract state for the tabs directive
@@ -75,4 +77,4 @@ angular.module('nudge', ['ionic', 'nudge.controllers', 'nudge.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/colour');
 
-});
+}]);

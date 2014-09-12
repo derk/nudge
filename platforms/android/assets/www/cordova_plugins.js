@@ -27,6 +27,28 @@ module.exports = [
         "clobbers": [
             "window.bluetoothle"
         ]
+    },
+    {
+        "file": "plugins/com.megster.cordova.ble/www/ble.js",
+        "id": "com.megster.cordova.ble.ble",
+        "clobbers": [
+            "ble"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.network-information/www/network.js",
+        "id": "org.apache.cordova.network-information.network",
+        "clobbers": [
+            "navigator.connection",
+            "navigator.network.connection"
+        ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.network-information/www/Connection.js",
+        "id": "org.apache.cordova.network-information.Connection",
+        "clobbers": [
+            "Connection"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -36,7 +58,9 @@ module.exports.metadata =
     "org.apache.cordova.console": "0.2.10",
     "org.apache.cordova.device": "0.2.11",
     "org.apache.cordova.statusbar": "0.1.7",
-    "com.randdusing.bluetoothle": "1.0.2"
+    "com.randdusing.bluetoothle": "1.0.2",
+    "com.megster.cordova.ble": "0.0.2",
+    "org.apache.cordova.network-information": "0.2.11"
 }
 // BOTTOM OF METADATA
 });

@@ -1,5 +1,7 @@
-Nudge by Buddi App
-=====================
+# Nudge by Buddi App
+
+[![Dependency Status](https://david-dm.org/rosterloh/nudge.svg)](https://david-dm.org/rosterloh/nudge)
+[![devDependency Status](https://david-dm.org/rosterloh/nudge/dev-status.svg)](https://david-dm.org/rosterloh/nudge#info=devDependencies)
 
 ## Currently supported platforms
  * Android
@@ -16,4 +18,7 @@ Nudge by Buddi App
   * `$ ionic emulate android`
 
 ## Debugging
-  `$ adb logcat -s CordovaLog`
+```bash
+  $ adb logcat -s CordovaLog
+  $ ionic run android -l -c -s
+```

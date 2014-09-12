@@ -23,6 +23,16 @@
                         {
                             "xml": "<feature name=\"BluetoothLePlugin\"><param name=\"android-package\" value=\"com.randdusing.bluetoothle.BluetoothLePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"NetworkStatus\"><param name=\"android-package\" value=\"org.apache.cordova.networkinformation.NetworkManager\" /></feature>",
+                            "count": 1
+                        }
+                    ],
+                    "/widget": [
+                        {
+                            "xml": "<feature name=\"BLE\"><param name=\"android-package\" value=\"com.megster.cordova.ble.central.BLECentralPlugin\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -32,10 +42,20 @@
                     "/manifest": [
                         {
                             "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH\" />",
-                            "count": 1
+                            "count": 2
                         },
                         {
                             "xml": "<uses-permission android:name=\"android.permission.BLUETOOTH_ADMIN\" />",
+                            "count": 2
+                        },
+                        {
+                            "xml": "<uses-sdk android:minSdkVersion=\"18\" android:targetSdkVersion=\"19\" />",
+                            "count": 1
+                        }
+                    ],
+                    "/*": [
+                        {
+                            "xml": "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\" />",
                             "count": 1
                         }
                     ]
@@ -57,6 +77,12 @@
             "PACKAGE_NAME": "com.ionicframework.nudge156028"
         },
         "com.randdusing.bluetoothle": {
+            "PACKAGE_NAME": "com.ionicframework.nudge156028"
+        },
+        "com.megster.cordova.ble": {
+            "PACKAGE_NAME": "com.ionicframework.nudge156028"
+        },
+        "org.apache.cordova.network-information": {
             "PACKAGE_NAME": "com.ionicframework.nudge156028"
         }
     },

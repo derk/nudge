@@ -1,5 +1,11 @@
 'use strict';
 angular.module('nudge.controllers', [])
+.controller('SplashCtrl', function($timeout, $state) {
+  var t = $timeout(function() {
+    $state.go('tab.colour');
+  }, 2000);
+  //$timeout.cancel(t);
+})
 
 .controller('ColourCtrl', function($scope, Colours, $ionicPopup) {
   $scope.debug = true;
@@ -167,7 +173,7 @@ angular.module('nudge.controllers', [])
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('SettingsCtrl', function($scope, Settings) {
+.controller('SettingsCtrl', function($scope, Settings, $cordovaDevice) {
   $scope.settings = Settings.getSettings();
 
   // Watch deeply for settings changes, and save them
@@ -175,4 +181,11 @@ angular.module('nudge.controllers', [])
   $scope.$watch('settings', function(v) {
     Settings.save();
   }, true);
+
+  var device = $cordovaDevice.getDevice();
+  var cordova = $cordovaDevice.getCordova();
+  var model = $cordovaDevice.getModel();
+  var platform = $cordovaDevice.getPlatform();
+  var uuid = $cordovaDevice.getUUID();
+  var version = $cordovaDevice.getVersion();
 });
