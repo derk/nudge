@@ -1,13 +1,16 @@
-'use strict';
-angular.module('nudge.controllers', [])
-.controller('SplashCtrl', function($timeout, $state) {
-  var t = $timeout(function() {
-    $state.go('tab.colour');
-  }, 2000);
-  //$timeout.cancel(t);
-})
-
-.controller('ColourCtrl', function($scope, Colours, $ionicPopup) {
+/**
+ * @ngdoc controller
+ * @name OldColourCtrl
+ * @module nudge
+ * @description
+ * Controller for the Colours Tab page using BluetoothLE module
+ */
+NudgeModule
+.controller('OldColourCtrl', [
+  '$scope', 
+  'Colours', 
+  '$ionicPopup',
+function ($scope, Colours, $ionicPopup) {
   $scope.debug = true;
   $scope.logs = [];
   $scope.initializeBluetooth = false;
@@ -162,48 +165,5 @@ angular.module('nudge.controllers', [])
     }).then(function(res) {
       console.log('Colour ' + $scope.colours[value].name + ' sent');
     });
-  }
-})
-
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
-})
-
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
-})
-
-.controller('SettingsCtrl', function($scope, Settings, $cordovaDevice, $cordovaNetwork) {
-  $scope.settings = Settings.getSettings();
-
-  // Watch deeply for settings changes, and save them
-  // if necessary
-  $scope.$watch('settings', function(v) {
-    Settings.save();
-  }, true);
-
-  try {
-    $scope.available = $cordovaDevice.getDevice().available;
-    $scope.device = $cordovaDevice.getDevice();
-    $scope.cordova = $cordovaDevice.getCordova();
-    $scope.model = $cordovaDevice.getModel();
-    $scope.platform = $cordovaDevice.getPlatform();
-    $scope.uuid = $cordovaDevice.getUUID();
-    $scope.version = $cordovaDevice.getVersion();
-  } catch (err) {
-    console.log("Error " + err.message);
-    alert("error " + err.$$failure.message);
-  }
-
-  $scope.networkType = $cordovaNetwork.getNetwork();
-
-  if ($cordovaNetwork.isOnline() == true) {
-    $scope.connectionType = 'Online';
-  }
-  else if ($cordovaNetwork.isOffline() == true) {
-    $scope.connectionType = 'Offline';
-  }
-  else {
-    $scope.errorMsg = 'Error getting isOffline / isOnline methods';
-  }
-});
+  };
+}]);

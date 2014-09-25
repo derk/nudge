@@ -1,0 +1,15 @@
+<ion-view title="{{friend.firstName}} {{friend.lastName}}">
+  <ion-content has-header="true" padding="true">
+    <div class="list card">
+      <div class="item item-avatar">
+        <img src="img/{{friend.img }}"/>
+        <h2>{{friend.firstName}} {{friend.lastName}}</h2>
+        <p>{{friend.title}}</p>
+      </div>
+      <a class="item item-icon-left" href="tel:{{friend.officePhone}}"><i class="icon ion-ios7-telephone"></i>Call Office<p>{{friend.officePhone}}</p></a>
+      <a class="item item-icon-left" href="tel:{{friend.cellPhone}}"><i class="icon ion-ios7-telephone"></i>Call Cell<p>{{friend.cellPhone}}</p></a>
+      <a class="item item-icon-left" href="sms:{{friend.cellPhone}}"><i class="icon ion-chatbox-working"></i>SMS<p>{{friend.cellPhone}}</p></a>
+      <a class="item item-icon-left" href="mailto:{{friend.email}}"><i class="icon ion-ios7-email"></i>Email<p>{{friend.email}}</p></a>
+    </div>
+  </ion-content>
+</ion-view>
