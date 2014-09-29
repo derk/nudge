@@ -10,6 +10,8 @@
       <a class="item item-icon-left" href="tel:{{friend.cellPhone}}"><i class="icon ion-ios7-telephone"></i>Call Cell<p>{{friend.cellPhone}}</p></a>
       <a class="item item-icon-left" href="sms:{{friend.cellPhone}}"><i class="icon ion-chatbox-working"></i>SMS<p>{{friend.cellPhone}}</p></a>
       <a class="item item-icon-left" href="mailto:{{friend.email}}"><i class="icon ion-ios7-email"></i>Email<p>{{friend.email}}</p></a>
+      <ion-toggle ng-model="friend.enabled" toggle-class="toggle-positive" ng-change="tglChange(device)">Enabled</ion-toggle>
+      
     </div>
   </ion-content>
 </ion-view>

@@ -22,6 +22,10 @@ function($scope, Friends) {
   }
 
   $scope.friends = Friends.all();
+  
+  $scope.tglChange = function(device) {
+    
+  }
 }])
   
 /**

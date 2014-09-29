@@ -7891,28 +7891,35 @@ $ios-transition-box-shadow-end: -200px 0px 200px rgba(0,0,0,0.15), -5px 0px 5px 
   opacity: 1;
   max-width: 200px; }
 
+/*
 .item-avatar > img:first-child, .item-avatar .item-image, .item-avatar .item-content > img:first-child, .item-avatar .item-content .item-image, .item-avatar-left > img:first-child, .item-avatar-left .item-image, .item-avatar-left .item-content > img:first-child, .item-avatar-left .item-content .item-image {
-  border-radius: 25px;
-  max-width: 50px;
-  max-height: 50px;
-  top: 10px; }
+    border-radius: 25px;
+    max-width: 50px;
+    max-height: 50px;
+    top: 10px;
+}
 
 .card .item-avatar > img:first-child {
-  max-width: 50px;
-  max-height: 50px;
-  border-radius: 25px;
-  left: 50px; }
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 25px;
+    left: 50px;
+}
 
 .card .item-avatar {
-  padding-left: 110px; }
+    padding-left: 110px;
+}
 
 .card .item-avatar:first-child > img:first-child {
-  max-width: 70px;
-  max-height: 70px;
-  border-radius: 35px;
-  left: 15px; }
+    max-width: 70px;
+    max-height: 70px;
+    border-radius: 35px;
+    left: 15px;
+}
 
 .card .item-avatar:first-child {
-  padding-top: 24px;
-  padding-left: 110px;
-  height: 90px; }
+    padding-top: 24px;
+    padding-left: 110px;
+    height: 60px;
+}
+*/

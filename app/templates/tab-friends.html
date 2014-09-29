@@ -1,21 +1,40 @@
 <ion-view title="Friends">
-
+  
   <div class="bar bar-subheader item-input-inset">
-    <label class="item-input-wrapper">
-      <i class="icon ion-ios7-search placeholder-icon"></i>
-      <input id="searchKey" type="search" placeholder="Search" ng-model="searchKey" autocorrect="off" >
-      <button class="button button-clear" ng-click="clearSearch()">X</button>
-    </label>
-    <button class="button button-clear" ng-click="search()">Search</button>
+	  <label class="item-input-wrapper">
+	    <i class="icon ion-ios7-search placeholder-icon"></i>
+	    <input id="searchKey" type="search" placeholder="Search" ng-model="searchKey" autocorrect="off" >
+	    <button class="button button-clear" ng-click="clearSearch()">X</button>
+	  </label>
+	  <button class="button button-clear" ng-click="search()">Search</button>
   </div>
 
-  <ion-content>
+  <ion-content class="has-header has-subheader">
     <ion-list>
-      <ion-item ng-repeat="friend in friends | filter:searchKey" type="item-text-wrap" class="item-avatar" href="#/tab/friend/{{friend.id}}">
+      <ion-item ng-repeat="friend in friends | filter:searchKey" href="#/tab/friend/{{friend.id}}" class="item-thumbnail-left">
         <img src="img/{{friend.img}}"/>
-        {{friend.firstName}} {{friend.lastName}}
-        <p>{{friend.title}}</p>
-      </ion-item>
+        <ion-toggle ng-model="friend.enabled" toggle-class="toggle-positive" ng-change="tglChange(device)">
+          <h2>{{friend.firstName}} {{friend.lastName}}</h2>
+          <p>{{friend.title}}</p>
+        </ion-toggle>        
+      </ion-item>      
+      <!-- <div class="item item-body">
+        <ion-toggle ng-model="friend.enabled" toggle-class="toggle-positive" ng-change="tglChange(device)">Enabled</ion-toggle>
+      </div>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+	      <a class="tab-item" href="#">
+	        <i class="icon ion-thumbsup"></i>
+	          Like
+	      </a>
+	      <a class="tab-item" href="#">
+	        <i class="icon ion-chatbox"></i>
+	          Comment
+	      </a>
+	      <a class="tab-item" href="#">
+	        <i class="icon ion-share"></i>
+	          Share
+	      </a>
+      </div>  -->
     </ion-list>
   </ion-content>
 
