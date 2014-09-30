@@ -3,7 +3,7 @@ var NudgeModule = angular.module('nudge', ['ionic']), /* removed for now 'ngReso
   forEach = angular.forEach,
   isDefined = angular.isDefined,
   isString = angular.isString;
-  
+
   NudgeModule
   .run(['$ionicPlatform', function($ionicPlatform) {
     $ionicPlatform.ready(function() {
@@ -15,20 +15,20 @@ var NudgeModule = angular.module('nudge', ['ionic']), /* removed for now 'ngReso
       }
     });
   }]);
-  
+
   NudgeModule
   .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
-  
+
     $stateProvider
-  
+
       // setup an abstract state for the tabs directive
       .state('tab', {
         url: "/tab",
         abstract: true,
         templateUrl: "tabs.html"
       })
-  
-      // Each tab has its own nav history stack:  
+      /*
+      // Each tab has its own nav history stack:
       .state('tab.colour', {
         url: '/colour',
         views: {
@@ -37,7 +37,7 @@ var NudgeModule = angular.module('nudge', ['ionic']), /* removed for now 'ngReso
             controller: 'ColourCtrl'
           }
         }
-      })  
+      })*/
       .state('tab.friends', {
         url: '/friends',
         views: {
@@ -56,7 +56,7 @@ var NudgeModule = angular.module('nudge', ['ionic']), /* removed for now 'ngReso
           }
         }
       })
-  
+
       .state('tab.settings', {
         url: '/settings',
         views: {
@@ -65,9 +65,15 @@ var NudgeModule = angular.module('nudge', ['ionic']), /* removed for now 'ngReso
             controller: 'SettingsCtrl'
           }
         }
+      })
+
+      .state('colour-popup', {
+        url: '/colour-popup',
+        abstract: true,
+        templateUrl: "colour-popup.html"
       });
-  
+
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/colour');
-  
+    $urlRouterProvider.otherwise('/tab/friends');
+
   }]);

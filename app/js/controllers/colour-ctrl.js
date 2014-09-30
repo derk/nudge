@@ -7,9 +7,9 @@
  */
 NudgeModule
 .controller('ColourCtrl', [
-  '$scope', 
-  'Settings', 
-  'Peripheral', 
+  '$scope',
+  'Settings',
+  'Peripheral',
   '$ionicLoading',
 function($scope, Settings, Peripheral, $ionicLoading) {
   $scope.debug = true;
@@ -18,11 +18,11 @@ function($scope, Settings, Peripheral, $ionicLoading) {
 
   function addSuccessMessage(m) {
     $scope.logs.push({message: m, type: 'success', color: 'rgb(45, 231, 112)'});
-  };
+  }
 
   function addErrorMessage(m) {
     $scope.logs.push({message: m, type: 'error', color: 'rgb(255, 76, 76)'});
-  };
+  }
 
   function onDiscoverDevice(device) {
     //if (device.name.match(/Buddi/i)) {
@@ -30,12 +30,12 @@ function($scope, Settings, Peripheral, $ionicLoading) {
       $scope.logs.push({message: m, type: 'connect', color: 'rgb(200, 200, 200)', data: device.id});
     //}
     $ionicLoading.hide();
-  };
+  }
 
   function handleError(reason) {
     addErrorMessage('ERROR: ' + reason);
     $ionicLoading.hide();
-  };
+  }
 
   function showLoader() {
     $ionicLoading.show({
@@ -48,7 +48,7 @@ function($scope, Settings, Peripheral, $ionicLoading) {
     //$cordovaBleCentral.scan([], 5).then(onDiscoverDevice, handleError);
     ble.scan([], 5, onDiscoverDevice, handleError);
     //$ionicLoading.hide();
-  }
+  };
 
   $scope.connectDevice = function(mac) {
   /*
@@ -71,8 +71,8 @@ function($scope, Settings, Peripheral, $ionicLoading) {
     }, handleError);
     //ble.connect(mac, function() { addSuccessMessage('Connected to ' + mac); $ionicLoading.hide(); }, handleError);
     */
-  }
-  
+  };
+
   /**
    * @ngdoc method
    * @name ionic.Platform.ready
