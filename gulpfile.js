@@ -5,7 +5,8 @@ var gulp    = require('gulp'),
     bower   = require('bower'),
     sh      = require('shelljs'),
     stylish = require('jshint-stylish'),
-    pkg     = require('./package.json');
+    pkg     = require('./package.json'),
+    exec    = require('child_process').exec;
 
 var paths = {
   sass: ['./app/styles/**/*.scss'],
@@ -14,7 +15,7 @@ var paths = {
   fonts: ['app/fonts/**.*',
     'bower_components/ionic/ionic-bower-1.0.0-beta.13/fonts/*.{ttf,woff,eof,svg}'],
   images: ['app/img/**/*.*'],
-  vendors: [ 
+  vendors: [
      /* using custom build so we can use angular1.3+
      ionic.bundle.js = [ionic.js, angular.js, angular-animate.js, angular-sanitize.js, angular-ui-router.js, ionic-angular.js]*/
     'bower_components/ionic/ionic-bower-1.0.0-beta.13/js/ionic.js',
@@ -22,7 +23,7 @@ var paths = {
     'bower_components/angular-animate/angular-animate.js',
     'bower_components/angular-sanitize/bower-angular-sanitize-1.3.0-rc.3/angular-sanitize.js',
     'bower_components/angular-ui-router/ui-router-0.2.11/release/angular-ui-router.js',
-    'bower_components/ionic/ionic-bower-1.0.0-beta.13/js/ionic-angular.js',    
+    'bower_components/ionic/ionic-bower-1.0.0-beta.13/js/ionic-angular.js',
     /*'bower_components/angular-resource/angular-resource.js',*/
     /*'bower_components/ngCordova/dist/ng-cordova.js',*/
   ],
@@ -34,6 +35,15 @@ var paths = {
   ],
   dist: './www'
 };
+
+var pluginList = [
+  'com.ionic.keyboard',
+  'org.apache.cordova.console',
+  'org.apache.cordova.device',
+  'org.apache.cordova.statusbar',
+  'org.apache.cordova.network-information',
+  'https://github.com/don/cordova-plugin-ble-central#:/plugin'
+];
 
 var banner = [
   '/**',
@@ -124,6 +134,14 @@ gulp.task('watch', function() {
   gulp.watch(paths.templates, ['templates']);
   gulp.watch(paths.files, ['copy-files']);
   gulp.watch(paths.images, ['copy-images']);
+});
+
+gulp.task('install-plugins', function() {
+  pluginList.forEach(function(p) {
+    var cmd = 'ionic plugin add ' + p;
+    console.log(cmd);
+    exec(cmd);
+  });
 });
 
 gulp.task('install', ['git-check'], function() {

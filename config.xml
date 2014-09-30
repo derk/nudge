@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.buddi.nudge" versionCode="1" version="0.0.1">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"
+  id="com.buddi.nudge"
+  version="0.0.1"
+  versionCode="1"
+  CFBundleVersion="1.0.0">
   <name>nudge</name>
   <description>Nudge by Buddi.</description>
-  <author email="richard.osterloh@gmail.com" href="http://www.buddi.co.uk/">Buddi Ltd.
+  <author email="richard.osterloh@gmail.com" href="http://www.buddi.co.uk/">
+    Buddi Ltd.
 	</author>
   <content src="index.html"/>
   <access origin="*"/>
