@@ -9,13 +9,16 @@ NudgeModule
 .controller('FriendsCtrl', [
   '$scope',
   'Friends',
-  'Peripheral',
   '$ionicPopup',
   '$ionicLoading',
-function($scope, Friends, Peripheral, $ionicPopup, $ionicLoading) {
+  'BUDDI_UUIDS',
+  '$timeout',
+  '$q',
+function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q) {
   $scope.searchKey = "";
   $scope.friends = Friends.all();
   $scope.devices = [];
+  $scope.doOnce = true;
 
   $scope.search = function () { };
 
@@ -75,27 +78,98 @@ function($scope, Friends, Peripheral, $ionicPopup, $ionicLoading) {
     });
   }
 
-  ionic.Platform.ready(function() {
-    ble.isEnabled(
-      function() {
-        var band1 = new Peripheral('D0:39:72:F1:E9:72');
-        $scope.devices.push(band1);
-        band1.connect().then(function(msg) {
-          console.log('Success: ' + msg);
+  $scope.onError = function(err) {
+    console.log('Error: '+err);
+  };
+
+  $scope.onData = function(id, data) {
+    console.log(data+' from '+id);
+    var a = new Uint8Array(data);
+  };
+
+  var Peripheral = function (deviceId) {
+    this.deviceId = deviceId;
+  };
+
+  Peripheral.prototype.connect = function() {
+    var self = this;
+    var q = $q.defer();
+    console.log('Trying to connect to '+self.deviceId);
+    ble.connect(self.deviceId, function(event) {
+      q.notify('Connected. Reading DevInfo');
+      ble.read(self.deviceId, '180A', '2A29', function(data) { $scope.onData(self.deviceId, data); }, $scope.onError);
+      ble.notify(self.deviceId,
+        BUDDI_UUIDS.service,
+        BUDDI_UUIDS.notification,
+        function(data) {
+          $scope.onData(self.deviceId, data);
         }, function(err) {
-          console.log('Error: ' + err);
-        }, function(update) {
-          console.log('Notification: ' + update);
-        });
-      },
-      function() {
-        $ionicPopup.alert({
-          title: 'Bluetooth disabled',
-          template: 'Please enable bluetooth on your device before continuing'
-        });
-      }
-    );
+          q.reject(err);
+        }
+      );
+      q.resolve('Done');
+    }, function(err) {
+      q.reject(err);
+    });
+
+    return q.promise;
+  };
+
+  ionic.Platform.ready(function() {
+    if($scope.doOnce) {
+      $scope.doOnce = false;
+      ble.isEnabled(
+        function() {
+          ble.scan([], 5, function(dev) { console.log(dev.name+' : '+dev.rssi+'dBm : '+dev.id+' : '+angular.equals(dev.id, 'D0:39:72:F1:E9:72')); }, function(err) { $scope.onError(err); });
+          var band1 = new Peripheral('D0:39:72:F1:E9:72');
+          band1.connect().then(function(msg) {
+            console.log('Success: ' + msg);
+            $scope.devices.push(band1);
+          }, function(err) {
+            console.log('Error: ' + err);
+          }, function(update) {
+            console.log('Notification: ' + update);
+          });
+          var band2 = new Peripheral('D0:39:72:F1:EA:81');
+          band2.connect().then(function(msg) {
+            console.log('Success: ' + msg);
+            $scope.devices.push(band2);
+          }, function(err) {
+            console.log('Error: ' + err);
+          }, function(update) {
+            console.log('Notification: ' + update);
+          });
+          if($scope.devices.length > 0) {
+            $scope.connectionCheck();
+          }
+        },
+        function() {
+          var alertPopup = $ionicPopup.alert({
+            title: 'Bluetooth disabled',
+            template: 'Please enable bluetooth on your device before continuing'
+          });
+          alertPopup.then(function(res) {
+            // if(ionic.Platform.isAndroid())
+            ionic.Platform.exitApp();
+          });
+        }
+      );
+    } else {
+      console.log('Skipping call to Platform.ready');
+    }
   });
+
+  $scope.connectionCheck = function() {
+    $timeout(function() {
+      angular.forEach($scope.devices, function(value, key) {
+        ble.isConnected(value.deviceId,
+          function() { console.log(value.deviceId + ' connected'); },
+          function() { console.log(value.deviceId + ' has disconnected'); }
+        );
+      });
+      $scope.connectionCheck();
+    }, 2000);
+  };
 }])
 
 /**

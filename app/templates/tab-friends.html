@@ -15,7 +15,7 @@
       <ion-item ng-repeat="friend in friends | filter:searchKey" href="#" class="item-thumbnail-left friends-list">
         <img src="img/{{friend.img}}"/>
         <h2>{{friend.firstName}} {{friend.lastName}}</h2>
-        <p>{{friend.title}}</p>
+        <!--<p>{{friend.title}}</p>--><p></p>
         <ion-toggle ng-model="friend.enabled" toggle-class="toggle-positive" ng-change="tglChange(device)"></ion-toggle>
         <div class="colour" ng-click="showPopup($event, friend)" ng-class="friend.colourName"></div>
       </ion-item>
