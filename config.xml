@@ -18,7 +18,6 @@
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
     <param name="android-package" value="org.apache.cordova.statusbar.StatusBar"/>
-    <param name="ios-package" value="CDVStatusBar"/>
     <param name="id" value="org.apache.cordova.statusbar"/>
   </feature>
   <feature name="Console">

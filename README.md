@@ -24,12 +24,7 @@
 
 ## Adding Required Plugins
 ```bash
-$ ionic plugin add com.ionic.keyboard
-$ ionic plugin add org.apache.cordova.console
-$ ionic plugin add org.apache.cordova.device
-$ ionic plugin add org.apache.cordova.statusbar
-$ ionic plugin add org.apache.cordova.network-information
-$ ionic plugin add https://github.com/don/cordova-plugin-ble-central#:/plugin
+$ gulp install-plugins
 ```
 
 ## Building and running

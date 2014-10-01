@@ -74,12 +74,22 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q)
 
   function showLoader() {
     $ionicLoading.show({
-      template: 'Loading...<i class="icon ion-loading-c"></i>'
+      template: 'Connecting...<i class="icon ion-loading-c"></i>',
+      duration: 10000
     });
   }
 
   $scope.onError = function(err) {
+    $ionicLoading.hide();
     console.log('Error: '+err);
+    if(err !== 'Disconnected') {
+      var alertPopup = $ionicPopup.alert({
+        title: 'Bluetooth Error!',
+        template: 'Error: ' + err
+      });
+    } else {
+      // TODO: add reconnect or at least remove from devices
+    }
   };
 
   $scope.onData = function(id, data) {
@@ -120,7 +130,9 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q)
       $scope.doOnce = false;
       ble.isEnabled(
         function() {
-          ble.scan([], 5, function(dev) { console.log(dev.name+' : '+dev.rssi+'dBm : '+dev.id+' : '+angular.equals(dev.id, 'D0:39:72:F1:E9:72')); }, function(err) { $scope.onError(err); });
+          showLoader();
+          //ble.scan([], 5, function(dev) { console.log(dev.name+' : '+dev.rssi+'dBm : '+dev.id+' : '+angular.equals(dev.id, 'D0:39:72:F1:E9:72')); }, function(err) { $scope.onError(err); });
+          /*
           var band1 = new Peripheral('D0:39:72:F1:E9:72');
           band1.connect().then(function(msg) {
             console.log('Success: ' + msg);
@@ -141,7 +153,23 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q)
           });
           if($scope.devices.length > 0) {
             $scope.connectionCheck();
-          }
+          }*/
+          $timeout(function() {
+            ble.connect('D0:39:72:F1:E9:72', function() {
+              $ionicLoading.hide();
+              console.log('Connected.');
+              var configData = new Uint8Array([16, 1, 255, 0, 0]);
+              ble.write('D0:39:72:F1:E9:72', BUDDI_UUIDS.service, BUDDI_UUIDS.command, configData.buffer,
+                function() {
+                  console.log('LED set to red');
+                }, function(err) { $scope.onError(err); });
+              ble.notify('D0:39:72:F1:E9:72', BUDDI_UUIDS.service, BUDDI_UUIDS.notification,
+                function(data) {
+                  console.log('Notifications enabled');
+                  $scope.onData('D0:39:72:F1:E9:72', data);
+                }, function(err) { $scope.onError(err); });
+            }, function(err) { $scope.onError(err); });
+          }, 3000);
         },
         function() {
           var alertPopup = $ionicPopup.alert({
