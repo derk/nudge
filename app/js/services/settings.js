@@ -7,11 +7,11 @@
  */
 NudgeModule
 .constant('DEFAULT_SETTINGS', {
-  'band1Address': 'D0:39:72:F1:E9:72',
-  'band2Address': 'D0:39:72:F1:EA:81'
+  'band1Address': 'D0:39:72:F1:E9:53',//'D0:39:72:F1:E9:72',
+  'band2Address': 'D0:39:72:F1:E9:63'//'D0:39:72:F1:EA:81'
 })
 .factory('Settings', [
-  '$rootScope', 
+  '$rootScope',
   'DEFAULT_SETTINGS',
 function($rootScope, DEFAULT_SETTINGS) {
   var _settings = {};
@@ -29,7 +29,7 @@ function($rootScope, DEFAULT_SETTINGS) {
 
   var obj = {
     getSettings: function() {
-      return _settings;
+      return DEFAULT_SETTINGS;//_settings;
     },
     // Save the settings to localStorage
     save: function() {
