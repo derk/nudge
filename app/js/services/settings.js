@@ -6,7 +6,11 @@
  * Settings Service
  */
 NudgeModule
-.constant('DEFAULT_SETTINGS', {
+.constant('DEFAULT_SETTINGS_IOS', {
+  'band1Address': 'F58E83E1-AE93-08CA-FA04-11FFFF18A3D3',
+  'band2Address': '8DC4981C-1429-A1AE-1552-F126F9DFC407'
+})
+.constant('DEFAULT_SETTINGS_ANDROID', {
   'band1Address': 'D0:39:72:F1:E9:53',//'D0:39:72:F1:E9:72',
   'band2Address': 'D0:39:72:F1:E9:63'//'D0:39:72:F1:EA:81'
 })
@@ -29,7 +33,13 @@ function($rootScope, DEFAULT_SETTINGS) {
 
   var obj = {
     getSettings: function() {
-      return DEFAULT_SETTINGS;//_settings;
+      if(ionic.Platform.isIOS()) {
+        console.log('Configuring for iOS');
+        return DEFAULT_SETTINGS_IOS;//_settings;
+      } else {
+        console.log('Configuring for Android');
+        return DEFAULT_SETTINGS_ANDROID;
+      }
     },
     // Save the settings to localStorage
     save: function() {

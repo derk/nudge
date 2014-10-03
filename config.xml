@@ -1,16 +1,85 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.buddi.nudge" version="0.0.1" versionCode="1" CFBundleVersion="1.0.0">
+
+<widget xmlns="http://www.w3.org/ns/widgets"
+        xmlns:cdv="http://cordova.apache.org/ns/1.0"
+        id="com.buddi.nudge"
+        version="0.0.1"
+        versionCode="1"
+        CFBundleVersion="1.0.0">
+
   <name>nudge</name>
+
   <description>Nudge by Buddi.</description>
-  <author email="richard.osterloh@gmail.com" href="http://www.buddi.co.uk/">&#xD;
-    Buddi Ltd.&#xD;
+
+  <author email="richard.osterloh@gmail.com" href="http://www.buddi.co.uk/">
+    Buddi Ltd.
 	</author>
+
   <content src="index.html"/>
   <access origin="*"/>
-  <preference name="webviewbounce" value="false"/>
+
+  <!-- Global Preferences -->
+  <preference name="Orientation" value="portrait"/>
+  <preference name="Fullscreen" value="true"/>
   <preference name="UIWebViewBounce" value="false"/>
-  <preference name="DisallowOverscroll" value="true"/>
-  <preference name="BackupWebStorage" value="none"/>
+  <preference name="AutoHideSplashScreen" value="true"/>
+  <preference name="SplashScreenDelay" value="4000"/>
+
+  <!-- iOS Specific Preferences -->
+  <platform name="ios">
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="webviewbounce" value="false"/>
+    <preference name="target-device" value="universal"/>
+    <preference name="deployment-target" value="8.0"/>
+    <preference name="BackupWebStorage" value="none"/>
+    <splash src="assets/ios/Default~iphone.png" width="320" height="480"/>
+    <splash src="assets/ios/Default@2x~iphone.png" width="640" height="960"/>
+    <splash src="assets/ios/Default-Portrait~ipad.png" width="768" height="1024"/>
+    <splash src="assets/ios/Default-Portrait@2x~ipad.png" width="1536" height="2048"/>
+    <splash src="assets/ios/Default-Landscape~ipad.png" width="1024" height="768"/>
+    <splash src="assets/ios/Default-Landscape@2x~ipad.png" width="2048" height="1536"/>
+    <splash src="assets/ios/Default-568h@2x~iphone.png" width="640" height="1136"/>
+    <!-- iOS 7.0+ -->
+    <!-- iPhone / iPod Touch -->
+    <icon src="assets/ios/icon-60.png" width="60" height="60"/>
+    <icon src="assets/ios/icon-60@2x.png" width="120" height="120"/>
+    <!-- iPad -->
+    <icon src="assets/ios/icon-76.png" width="76" height="76"/>
+    <icon src="assets/ios/icon-76@2x.png" width="152" height="152"/>
+    <!-- iOS 6.1 -->
+    <!-- Spotlight Icon -->
+    <icon src="assets/ios/icon-40.png" width="40" height="40"/>
+    <icon src="assets/ios/icon-40@2x.png" width="80" height="80"/>
+    <!-- iPhone / iPod Touch -->
+    <icon src="assets/ios/icon.png" width="57" height="57"/>
+    <icon src="assets/ios/icon@2x.png" width="114" height="114"/>
+    <!-- iPad -->
+    <icon src="assets/ios/icon-72.png" width="72" height="72"/>
+    <icon src="assets/ios/icon-72@2x.png" width="144" height="144"/>
+    <!-- iPhone Spotlight and Settings Icon -->
+    <icon src="assets/ios/icon-small.png" width="29" height="29"/>
+    <icon src="assets/ios/icon-small@2x.png" width="58" height="58"/>
+    <!-- iPad Spotlight and Settings Icon -->
+    <icon src="assets/ios/icon-50.png" width="50" height="50"/>
+    <icon src="assets/ios/icon-50@2x.png" width="100" height="100"/>
+  </platform>
+
+  <!-- Android Specific Preferences -->
+  <platform name="android">
+    <preference name="android-minSdkVersion" value="19"/>
+    <preference name="DisallowOverscroll" value="true"/>
+    <preference name="webviewbounce" value="false"/>
+    <splash src="assets/android/splash-port-hdpi.png" density="port-hdpi"/>
+    <splash src="assets/android/splash-port-ldpi.png" density="port-ldpi"/>
+    <splash src="assets/android/splash-port-mdpi.png" density="port-mdpi"/>
+    <splash src="assets/android/splash-port-xhdpi.png" density="port-xhdpi"/>
+    <icon src="assets/android/icon-hdpi.png" density="port-hdpi"/>
+    <icon src="assets/android/icon-ldpi.png" density="port-ldpi"/>
+    <icon src="assets/android/icon-mdpi.png" density="port-mdpi"/>
+    <icon src="assets/android/icon-xhdpi.png" density="port-xhdpi"/>
+  </platform>
+
+  <!-- Plugins -->
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
     <param name="android-package" value="org.apache.cordova.statusbar.StatusBar"/>
@@ -32,4 +101,5 @@
   <feature name="Network Information">
     <param name="id" value="org.apache.cordova.network-information"/>
   </feature>
+
 </widget>
