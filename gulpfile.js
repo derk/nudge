@@ -5,25 +5,24 @@ var gulp    = require('gulp'),
     bower   = require('bower'),
     sh      = require('shelljs'),
     stylish = require('jshint-stylish'),
-    pkg     = require('./package.json'),
-    exec    = require('child_process').exec;
+    pkg     = require('./package.json');
 
 var paths = {
   sass: ['./app/styles/**/*.scss'],
   templates: ['./app/templates/**/*.html'],
   files: ['app/index.html'],
   fonts: ['app/fonts/**.*',
-    'bower_components/ionic/fonts/*.{ttf,woff,eof,svg}'],
+    'bower_components/ionic/release/fonts/*.{ttf,woff,eof,svg}'],
   images: ['app/img/**/*.*'],
   vendors: [
      /* using custom build so we can use angular1.3+
      ionic.bundle.js = [ionic.js, angular.js, angular-animate.js, angular-sanitize.js, angular-ui-router.js, ionic-angular.js]*/
-    'bower_components/ionic/js/ionic.js',
+    'bower_components/ionic/release/js/ionic.js',
     'bower_components/angular/angular.js',
     'bower_components/angular-animate/angular-animate.js',
     'bower_components/angular-sanitize/angular-sanitize.js',
     'bower_components/angular-ui-router/release/angular-ui-router.js',
-    'bower_components/ionic/js/ionic-angular.js',
+    'bower_components/ionic/release/js/ionic-angular.js',
     /*'bower_components/angular-resource/angular-resource.js',*/
     /*'bower_components/ngCordova/dist/ng-cordova.js',*/
   ],
@@ -35,15 +34,6 @@ var paths = {
   ],
   dist: './www'
 };
-
-var pluginList = [
-  'com.ionic.keyboard',
-  'org.apache.cordova.console',
-  'org.apache.cordova.device',
-  'org.apache.cordova.statusbar',
-  'org.apache.cordova.network-information',
-  'https://github.com/don/cordova-plugin-ble-central#:/plugin'
-];
 
 var banner = [
   '/**',
@@ -73,8 +63,9 @@ gulp.task('sass', function(done) {
 //Minify and copy all 3rd party libs to vendors.min.js
 gulp.task('vendors', function() {
   return gulp.src(paths.vendors)
+    .pipe(plugins.concat('vendors.js'))
     .pipe(plugins.uglify())
-    .pipe(plugins.concat('vendors.min.js'))
+    .pipe(plugins.rename({extname: '.min.js'}))
     .pipe(gulp.dest(paths.dist+'/js'));
 });
 
@@ -134,14 +125,6 @@ gulp.task('watch', function() {
   gulp.watch(paths.templates, ['templates']);
   gulp.watch(paths.files, ['copy-files']);
   gulp.watch(paths.images, ['copy-images']);
-});
-
-gulp.task('install-plugins', function() {
-  pluginList.forEach(function(p) {
-    var cmd = 'ionic plugin add ' + p;
-    console.log(cmd);
-    exec(cmd);
-  });
 });
 
 gulp.task('install', ['git-check'], function() {

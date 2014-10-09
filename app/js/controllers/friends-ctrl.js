@@ -16,11 +16,12 @@ NudgeModule
   '$q',
   'Settings',
 function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q, Settings) {
-  $scope.searchKey = "";
+  $scope.searchKey = '';
   $scope.friends = Friends.all();
   $scope.devices = [];
   $scope.doOnce = true;
   $scope.settings = Settings.getSettings();
+  $scope.reconnect = true;
 
   $scope.search = function () { };
 
@@ -98,9 +99,23 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q,
     $ionicLoading.hide();
     console.log('Error: '+err);
     if(err !== 'Disconnected') {
-      var alertPopup = $ionicPopup.alert({
+      $ionicPopup.show({
         title: 'Bluetooth Error!',
-        template: 'Error: ' + err
+        template: 'Error: ' + err,
+        scope: $scope,
+        buttons: [
+          {
+            text: 'Continue',
+            type: 'button-dark'
+          },
+          {
+            text: 'Stop',
+            type: 'button-assertive',
+            onTap: function(e) {
+              $scope.reconnect = false;
+            }
+          }
+        ]
       });
     } else {
       // TODO: add reconnect or at least remove from devices
@@ -165,7 +180,7 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q,
       $ionicLoading.hide();
       console.log('Connected to '+self.deviceId);
       self.isConnected = true;
-      if(self.deviceId === $scope.settings['band1Address']) {
+      if(self.deviceId === $scope.settings.band1Address) {
         $scope.sendColour(self.deviceId, $scope.friends[0].colourName);
       } else {
         $scope.sendColour(self.deviceId, $scope.friends[1].colourName);
@@ -204,9 +219,9 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q,
       showLoader();
       ble.scan([], 5, function(dev) { console.log(dev.name+' : '+dev.rssi+'dBm : '+dev.id); }, function(err) { $scope.onError(err); });
 
-      var band1 = new Peripheral($scope.settings['band1Address']);
+      var band1 = new Peripheral($scope.settings.band1Address);
       $scope.devices.push(band1);
-      var band2 = new Peripheral($scope.settings['band2Address']);
+      var band2 = new Peripheral($scope.settings.band2Address);
       $scope.devices.push(band2);
       $timeout(function() {
         $scope.connectionCheck();
@@ -234,7 +249,9 @@ function($scope, Friends, $ionicPopup, $ionicLoading, BUDDI_UUIDS, $timeout, $q,
           value.connect();
         }
       });
-      $scope.connectionCheck();
+      if($scope.reconnect) {
+        $scope.connectionCheck();
+      }
     }, 7000);
   };
 }])

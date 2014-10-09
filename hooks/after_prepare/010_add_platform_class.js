@@ -22,9 +22,9 @@ function addPlatformBodyTag(indexPath, platform) {
     var html = fs.readFileSync(indexPath, 'utf8');
 
     var bodyTag = findBodyTag(html);
-    if(!bodyTag) return; // no opening body tag, something's wrong
+    if(!bodyTag) { return; } // no opening body tag, something's wrong
 
-    if(bodyTag.indexOf(platformClass) > -1) return; // already added
+    if(bodyTag.indexOf(platformClass) > -1) { return; } // already added
 
     var newBodyTag = bodyTag;
 
@@ -76,7 +76,7 @@ if (rootdir) {
       var platform = platforms[x].trim().toLowerCase();
       var indexPath;
 
-      if(platform == 'android') {
+      if(platform === 'android') {
         indexPath = path.join('platforms', platform, 'assets', 'www', 'index.html');
       } else {
         indexPath = path.join('platforms', platform, 'www', 'index.html');

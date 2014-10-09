@@ -70,10 +70,16 @@ var NudgeModule = angular.module('nudge', ['ionic']), /* removed for now 'ngReso
       .state('colour-popup', {
         url: '/colour-popup',
         abstract: true,
-        templateUrl: "colour-popup.html"
+        templateUrl: 'colour-popup.html'
+      })
+
+      .state('ble-popup', {
+        url: '/ble-popup',
+        abstract: true,
+        templateUrl: 'ble-popup.html'
       });
 
     // if none of the above states are matched, use this as the fallback
     $urlRouterProvider.otherwise('/tab/friends');
-
+    //$urlRouterProvider.otherwise('/tab/settings');
   }]);

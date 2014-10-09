@@ -1,37 +1,53 @@
-<ion-view title="Settings">
-  <ion-content class="padding">
-    <h1>Settings</h1>
-    <div class="list card">
-			<div class="item item-text-wrap">
-				<h2>Model</h2>
-				<p>{{model}}</p>
-			</div>
-			<div class="item item-text-wrap">
-				<h2>Platform</h2>
-				<p>{{platform}}</p>
-			</div>
-			<div class="item item-text-wrap">
-				<h2>Version</h2>
-				<p>{{version}}</p>
-			</div>
-		</div>
-    <div class="card">
-			<div class="item">
-				<strong>You are currently</strong> &nbsp {{connectionType}}
-			</div>
-			<div class="item">
-				<strong>Network Type</strong> &nbsp {{networkStatus}}
-			</div>
-		</div>
-    <div class="list">
-      <label class="item item-input">
-        <span class="input-label">Band 1</span>
-        <input type="text" value="{{settings['band1Address']}}">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Band 2</span>
-        <input type="text" value="{{settings['band2Address']}}">
-      </label>
-    </div>
+<ion-view title='Settings'>
+  <ion-content class='padding'>
+    <ion-list class='card'>
+      <ion-item class='item-button-right'>
+        <!--<i class='icon ion-information-circled'></i> -->Band 1
+        <!--<span class='badge badge-positive'>{{settings.band1Address}}</span>-->
+        <button class='button button-positive' ng-click='setAddress(1)'>
+          {{settings.band1Address}}
+        </button>
+      </ion-item>
+      <ion-item class='item-button-right'>
+        <!--<i class='icon ion-information-circled'></i> -->Band 2
+        <!--<span class='badge badge-positive'>{{settings.band2Address}}</span>-->
+        <button class='button button-positive' ng-click='setAddress(2)'>
+          {{settings.band2Address}}
+        </button>
+      </ion-item>
+    </ion-list>
+
+    </br>
+
+    <ion-list class='card'>
+			<ion-item class="item-icon-left">
+				<i class='icon ion-ios7-navigate'></i>Model
+				<span class="item-note">{{model}}</span>
+			</ion-item>
+			<ion-item class="item-icon-left">
+			  <!--<i class='icon ion-ios7-cog'></i>-->
+				<i ng-show='android' class='icon ion-social-android'></i>
+        <i ng-hide='android' class='icon ion-social-apple'></i>Platform
+        <span class="item-note">{{platform}}</span>
+			</ion-item>
+			<ion-item class="item-icon-left">
+				<i class='icon ion-ios7-flag'></i>Version
+				<span class="item-note">{{version}}</span>
+			</ion-item>
+		</ion-list>
+
+    </br>
+
+    <ion-list class='card'>
+			<ion-item class="item-icon-left">
+				<i class='icon ion-asterisk'></i>You are currently
+        <span class="item-note">{{connectionType}}</span>
+			</ion-item>
+			<ion-item class="item-icon-left">
+				<i class='icon ion-wifi'></i>Network Type
+        <span class="item-note">{{networkStatus}}</span>
+			</ion-item>
+		</ion-list>
+
   </ion-content>
 </ion-view>

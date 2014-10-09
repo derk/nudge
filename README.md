@@ -14,18 +14,13 @@
 1. Clone the repository
   `$ git clone https://github.com/rosterloh/nudge.git`
 2. Install utilities
-  `$ npm install -g bower cordova ionic`
+  `$ npm install -g bower cordova ionic gulp`
 3. Install dependencies
   `$ npm install`
 4. Install bower components
   `$ bower install`
 5. Build the application files
   `$ gulp build`
-
-## Adding Required Plugins
-```bash
-$ gulp install-plugins
-```
 
 ## Building and running
 Platforms are: `ios` or `android`

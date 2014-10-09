@@ -1,0 +1,21 @@
+<div>
+  <ion-toggle ng-model='band1Select' toggle-class='toggle-dark'>
+    {{ band1Select ? 'Band 1' : 'Band 2' }}
+  </ion-toggle>
+
+  <ion-list>
+    <ion-item ng-repeat='d in devices' ng-click='setValue(d)'>
+     <h2>{{d.id}}</h2>
+     <p>{{d.name}}</p>
+    </ion-item>
+  </ion-list>
+
+  </br>
+
+  <button class='button button-outline icon-right'
+          ng-class="scanning ? 'button-assertive' : 'button-positive'"
+          ng-click='goScan()' >
+    <i ng-class="scanning ? 'ion-refreshing' : 'ion-refresh'"></i> Scan
+  </button>
+
+</div>
