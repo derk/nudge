@@ -39,7 +39,7 @@
     "org.apache.cordova.network-information",
     "org.apache.cordova.statusbar",
     "org.apache.cordova.console",
-    "https://github.com/don/cordova-plugin-ble-central#:/plugin",
-    "org.apache.cordova.splashscreen"
+    "org.apache.cordova.splashscreen",
+    "https://github.com/don/cordova-plugin-ble-central#:/plugin"
   ]
 }

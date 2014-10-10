@@ -1,4 +1,4 @@
-	# Nudge by Buddi App
+# Nudge by Buddi App
 
 [![Dependency Status](https://david-dm.org/rosterloh/nudge.svg)](https://david-dm.org/rosterloh/nudge)
 [![devDependency Status](https://david-dm.org/rosterloh/nudge/dev-status.svg)](https://david-dm.org/rosterloh/nudge#info=devDependencies)
@@ -8,7 +8,6 @@
   * [Apache Ant](http://ant.apache.org/)
   * [Apache Cordova](http://cordova.apache.org/)
   * [Ionic Framework](http://ionicframework.com/)
-  * `$ npm install -g cordova ionic`
 
 ## Getting Started Developing
 1. Clone the repository
@@ -31,6 +30,7 @@ Platforms are: `ios` or `android`
    `ionic run <platform>`
 
 For all the other ionic commands see `$ ionic --help`
+`$ npm install -g ios-deploy` is required for running
 
 ## Debugging
 ```bash
