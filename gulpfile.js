@@ -12,17 +12,17 @@ var paths = {
   templates: ['./app/templates/**/*.html'],
   files: ['app/index.html'],
   fonts: ['app/fonts/**.*',
-    'bower_components/ionic/release/fonts/*.{ttf,woff,eof,svg}'],
+          'bower_components/ionic/ionic-bower-1.0.0-rc.1/fonts/*.{ttf,woff,eof,svg}'],
   images: ['app/img/**/*.*'],
   vendors: [
      /* using custom build so we can use angular1.3+
      ionic.bundle.js = [ionic.js, angular.js, angular-animate.js, angular-sanitize.js, angular-ui-router.js, ionic-angular.js]*/
-    'bower_components/ionic/release/js/ionic.js',
-    'bower_components/angular/bower-angular-1.3.0/angular.js',
-    'bower_components/angular-animate/bower-angular-animate-1.3.0/angular-animate.js',
+    'bower_components/ionic/ionic-bower-1.0.0-rc.1/js/ionic.js',
+    'bower_components/angular/bower-angular-1.3.15/angular.js',
+    'bower_components/angular-animate/angular-animate.js',
     'bower_components/angular-sanitize/angular-sanitize.js',
-    'bower_components/angular-ui-router/release/angular-ui-router.js',
-    'bower_components/ionic/release/js/ionic-angular.js',
+    'bower_components/angular-ui-router/ui-router-0.2.13/release/angular-ui-router.js',
+    'bower_components/ionic/ionic-bower-1.0.0-rc.1/js/ionic-angular.js',
     /*'bower_components/angular-resource/bower-angular-resource-1.3.0/angular-resource.js',*/
     /*'bower_components/ngCordova/dist/ng-cordova.js',*/
   ],

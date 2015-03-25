@@ -19,7 +19,7 @@ $dark:                            #444 !default;
 $ionicons-font-path: "../fonts" !default;
 
 // Include all of Ionic
-@import "../../bower_components/ionic/scss/ionic";
+@import "../../bower_components/ionic/ionic-bower-1.0.0-rc.1/scss/ionic";
 
 .animated {
   -webkit-animation-duration: 1s;

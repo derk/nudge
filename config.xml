@@ -10,6 +10,7 @@
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="AutoHideSplashScreen" value="true"/>
   <preference name="SplashScreenDelay" value="4000"/>
+  <preference name="SplashScreen" value="screen"/>
   <platform name="ios">
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="webviewbounce" value="false"/>
@@ -42,14 +43,14 @@
     <preference name="android-minSdkVersion" value="19"/>
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="webviewbounce" value="false"/>
-    <splash src="assets/android/splash-port-hdpi.png" density="port-hdpi"/>
-    <splash src="assets/android/splash-port-ldpi.png" density="port-ldpi"/>
-    <splash src="assets/android/splash-port-mdpi.png" density="port-mdpi"/>
-    <splash src="assets/android/splash-port-xhdpi.png" density="port-xhdpi"/>
-    <icon src="assets/android/icon-hdpi.png" density="port-hdpi"/>
-    <icon src="assets/android/icon-ldpi.png" density="port-ldpi"/>
-    <icon src="assets/android/icon-mdpi.png" density="port-mdpi"/>
-    <icon src="assets/android/icon-xhdpi.png" density="port-xhdpi"/>
+    <icon src="resources\android\icon\drawable-ldpi-icon.png" density="ldpi"/>
+    <icon src="resources\android\icon\drawable-mdpi-icon.png" density="mdpi"/>
+    <icon src="resources\android\icon\drawable-hdpi-icon.png" density="hdpi"/>
+    <icon src="resources\android\icon\drawable-xhdpi-icon.png" density="xhdpi"/>
+    <icon src="resources\android\icon\drawable-xxhdpi-icon.png" density="xxhdpi"/>
+    <splash src="resources\android\splash\drawable-port-ldpi-screen.png" density="port-ldpi"/>
+    <splash src="resources\android\splash\drawable-port-mdpi-screen.png" density="port-mdpi"/>
+    <splash src="resources\android\splash\drawable-port-hdpi-screen.png" density="port-hdpi"/>
   </platform>
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
@@ -72,4 +73,5 @@
   <feature name="Network Information">
     <param name="id" value="org.apache.cordova.network-information"/>
   </feature>
+  <icon src="resources\android\icon\drawable-xhdpi-icon.png"/>
 </widget>
